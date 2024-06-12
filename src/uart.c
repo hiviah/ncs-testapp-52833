@@ -47,7 +47,7 @@ static void uart_cb(const struct device *dev, struct uart_event *evt, void *user
 
   switch (evt->type) {
     case UART_TX_DONE:
-      LOG_INF("UART_TX_DONE");
+      LOG_DBG("UART_TX_DONE");
       if ((evt->data.tx.len == 0) ||
           (!evt->data.tx.buf)) {
         return;
@@ -77,7 +77,7 @@ static void uart_cb(const struct device *dev, struct uart_event *evt, void *user
       break;
 
     case UART_RX_RDY:
-      LOG_INF("UART_RX_RDY");
+      LOG_DBG("UART_RX_RDY");
       buf = CONTAINER_OF(evt->data.rx.buf, uart_data_t, data);
       buf->len += evt->data.rx.len;
 
@@ -120,7 +120,7 @@ static void uart_cb(const struct device *dev, struct uart_event *evt, void *user
       break;
 
     case UART_RX_DISABLED:
-      LOG_INF("UART_RX_DISABLED");
+      LOG_DBG("UART_RX_DISABLED");
       disable_req = false;
 
       buf = k_malloc(sizeof(*buf));
@@ -164,7 +164,7 @@ static void uart_cb(const struct device *dev, struct uart_event *evt, void *user
       break;
 
 //	case UART_RX_BUF_REQUEST:
-//		LOG_INF("UART_RX_BUF_REQUEST");
+//		LOG_DBG("UART_RX_BUF_REQUEST");
 //		buf = k_malloc(sizeof(*buf));
 //
 //
@@ -183,7 +183,7 @@ static void uart_cb(const struct device *dev, struct uart_event *evt, void *user
 //      }
 //
 //			buf->len = 0;
-//      LOG_INF("Providing buf %d", rx_len);
+//      LOG_DBG("Providing buf %d", rx_len);
 //			uart_rx_buf_rsp(uart, buf->data, rx_len);
 //		} else {
 //			LOG_WRN("Not able to allocate UART receive buffer");
@@ -192,7 +192,7 @@ static void uart_cb(const struct device *dev, struct uart_event *evt, void *user
 //		break;
 
     case UART_RX_BUF_RELEASED:
-      LOG_INF("UART_RX_BUF_RELEASED");
+      LOG_DBG("UART_RX_BUF_RELEASED");
       buf = CONTAINER_OF(evt->data.rx_buf.buf, uart_data_t,
       data);
 
@@ -218,7 +218,7 @@ static void uart_cb(const struct device *dev, struct uart_event *evt, void *user
       break;
 
     case UART_TX_ABORTED:
-      LOG_INF("UART_TX_ABORTED");
+      LOG_DBG("UART_TX_ABORTED");
       if (!aborted_buf) {
         aborted_buf = (uint8_t *)evt->data.tx.buf;
       }
