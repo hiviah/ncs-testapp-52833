@@ -164,7 +164,7 @@ static void uart_cb(const struct device *dev, struct uart_event *evt, void *user
       break;
 
 //	case UART_RX_BUF_REQUEST:
-//		LOG_DBG("UART_RX_BUF_REQUEST");
+//		LOG_INF("UART_RX_BUF_REQUEST");
 //		buf = k_malloc(sizeof(*buf));
 //
 //
@@ -183,7 +183,7 @@ static void uart_cb(const struct device *dev, struct uart_event *evt, void *user
 //      }
 //
 //			buf->len = 0;
-//      LOG_DBG("Providing buf %d", rx_len);
+//      LOG_INF("Providing buf %d", rx_len);
 //			uart_rx_buf_rsp(uart, buf->data, rx_len);
 //		} else {
 //			LOG_WRN("Not able to allocate UART receive buffer");

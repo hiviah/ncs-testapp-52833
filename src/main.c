@@ -29,6 +29,8 @@
 
 #include <zephyr/logging/log.h>
 
+#include <fprotect.h>
+
 #include "uart.h"
 #include "spi.h"
 #include "connection.h"
@@ -166,6 +168,7 @@ int main(void)
 
 	configure_gpio();
 
+  //fprotect_area(0, 0x4000);
   err = uart_init();
   if (err) {
     error();
